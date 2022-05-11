@@ -1,0 +1,112 @@
+excercise-e
+import pandas as pd
+df1=pd.DataFrame({'student_id':['s1','s2','s3','s4','s5'],'name':['fenton','storey','jensen','bernal','morin'],'marks':[200,210,190,222,199]})
+df2=pd.DataFrame({'student_id':['s4','s5','s6','s7','s8'],'name':['fisher','williamson','morse','william','preston'],'marks':[201,200,198,219,201]})
+print("data frame1:\n",df1)
+print("data frame2:\n",df2)
+df1.append(df2,ignore_index=False ,verify_integrity=False,sort=False)
+data frame1:
+   student_id    name  marks
+0         s1  fenton    200
+1         s2  storey    210
+2         s3  jensen    190
+3         s4  bernal    222
+4         s5   morin    199
+data frame2:
+   student_id        name  marks
+0         s4      fisher    201
+1         s5  williamson    200
+2         s6       morse    198
+3         s7     william    219
+4         s8     preston    201
+student_id	name	marks
+0	s1	fenton	200
+1	s2	storey	210
+2	s3	jensen	190
+3	s4	bernal	222
+4	s5	morin	199
+0	s4	fisher	201
+1	s5	williamson	200
+2	s6	morse	198
+3	s7	william	219
+4	s8	preston	201
+import pandas as pd
+df1=pd.DataFrame({'student_id':['s1','s2','s3','s4','s5'],'name':['fenton','storey','jensen','bernal','morin'],'marks':[200,210,190,222,199]})
+dictionary={'student_id':'s6','name':'fisher','marks':205}
+print("dataframe1:\n",df1)
+print("dictionary:\n",dictionary)
+print("after appending dictionary to dataframe:\n",df1.append(dictionary,ignore_index=True))
+dataframe1:
+   student_id    name  marks
+0         s1  fenton    200
+1         s2  storey    210
+2         s3  jensen    190
+3         s4  bernal    222
+4         s5   morin    199
+dictionary:
+ {'student_id': 's6', 'name': 'fisher', 'marks': 205}
+after appending dictionary to dataframe:
+   student_id    name  marks
+0         s1  fenton    200
+1         s2  storey    210
+2         s3  jensen    190
+3         s4  bernal    222
+4         s5   morin    199
+5         s6  fisher    205
+import pandas as pd
+df1=pd.DataFrame({'student_id':['s1','s2','s3','s4','s5'],'name':['fenton','storey','jensen','bernal','morin'],'marks':[200,210,190,222,199]})
+df2=pd.DataFrame({'student_id':['s4','s5','s6','s7','s8'],'name':['fisher','williamson','morse','william','preston'],'marks':[201,200,198,219,201]})
+print("data frame1:\n",df1)
+print("data frame2:\n",df2)
+print("dataframes with matching records:\n",df1.merge(df2,how='inner',on='student_id'))
+print("non matching records:\n",df1.merge(df2,how='outer',on='student_id'))
+data frame1:
+   student_id    name  marks
+0         s1  fenton    200
+1         s2  storey    210
+2         s3  jensen    190
+3         s4  bernal    222
+4         s5   morin    199
+data frame2:
+   student_id        name  marks
+0         s4      fisher    201
+1         s5  williamson    200
+2         s6       morse    198
+3         s7     william    219
+4         s8     preston    201
+dataframes with matching records:
+   student_id  name_x  marks_x      name_y  marks_y
+0         s4  bernal      222      fisher      201
+1         s5   morin      199  williamson      200
+non matching records:
+   student_id  name_x  marks_x      name_y  marks_y
+0         s1  fenton    200.0         NaN      NaN
+1         s2  storey    210.0         NaN      NaN
+2         s3  jensen    190.0         NaN      NaN
+3         s4  bernal    222.0      fisher    201.0
+4         s5   morin    199.0  williamson    200.0
+5         s6     NaN      NaN       morse    198.0
+6         s7     NaN      NaN     william    219.0
+7         s8     NaN      NaN     preston    201.0
+import pandas as pd
+df1=pd.DataFrame({'key1':['k0','k0','k1','k2'],'key2':['k0','k1','k0','k1'],'P':['p0','p1','p2','p3'],'Q':['Q0','Q1','Q2','Q3']})
+df2=pd.DataFrame({'key1':['k0','k1','k1','k2'],'key2':['k0','k0','k0','k0'],'R':['R0','R1','R2','R3'],'S':['S0','S1','S2','S3']})
+df1.merge(df2,how='left',on=['key1','key2'])
+key1	key2	P	Q	R	S
+0	k0	k0	p0	Q0	R0	S0
+1	k0	k1	p1	Q1	NaN	NaN
+2	k1	k0	p2	Q2	R1	S1
+3	k1	k0	p2	Q2	R2	S2
+4	k2	k1	p3	Q3	NaN	NaN
+import pandas as pd
+df1=pd.DataFrame({'student_id':['s1','s2','s3','s4','s5'],'name':['fenton','storey','jensen','bernal','morin'],'marks':[200,210,190,222,199]})
+df1['rank']=df1['marks'].rank(ascending=1)
+
+print(df1)
+  student_id    name  marks  rank
+0         s1  fenton    200   3.0
+1         s2  storey    210   4.0
+2         s3  jensen    190   1.0
+3         s4  bernal    222   5.0
+4         s5   morin    199   2.0
+ 
