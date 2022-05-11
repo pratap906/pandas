@@ -1,0 +1,132 @@
+exercise f,g
+from datetime import datetime
+a=datetime(2012,1,15)
+print("the required date=",a)
+the required date= 2012-01-15 00:00:00
+from datetime import datetime
+a=datetime(2012,1,15,9,20,0)
+print("specific date and time\n",a)
+specific date and time
+ 2012-01-15 09:20:00
+from datetime import datetime
+print("local date and time:")
+print(datetime.now())
+local date and time:
+2022-05-04 14:22:16.354260
+#e
+a=datetime.now().date()
+print(a)
+2022-05-04
+#d
+a=datetime(2022,5,4).date()
+print(a)
+2022-05-04
+#f
+from datetime import datetime
+print("time for a datetime:")
+a=(datetime.datetime(2022,5,4).time())
+print(a)
+  File "<ipython-input-4-83eab5088257>", line 4
+    a=datetime.(datetime(2022,5,4).time())
+               ^
+SyntaxError: invalid syntax
+from datetime import datetime
+g=datetime.now().time()
+print(g)
+14:34:09.276797
+from datetime import datetime
+a=datetime(2022,5,4)
+print("date oject:\n",a)
+print("date from a given string:\n")
+print("enter date in yyyy-mm-dd\n")
+st=input()
+print(datetime.fromisoformat(st))
+date oject:
+ 2022-05-04 00:00:00
+date from a given string:
+
+enter date in yyyy-mm-dd
+
+2022-05-04
+2022-05-04 00:00:00
+import pandas as pd
+from datetime import datetime
+import numpy as np
+labels=[datetime(2022,5,4),datetime(2022,5,5)]
+a=pd.Series(np.random.rand(2),labels)
+print("time-series with two index labels and random values:")
+print(a)
+print("type of object:"type(a.in))
+time-series with two index labels and random values:
+2022-05-04    0.400782
+2022-05-05    0.945406
+dtype: float64
+type of object: <class 'pandas.core.indexes.datetimes.DatetimeIndex'>
+import pandas as pd
+data={'school':['s001','s002','s003','s004','s005','s006'],
+      'class':['V','V','VI','VI','V','VI'],
+      'name':['Alberto Franco','Gino Mcneill','Ryan Parkes','Eesha Hinton','Gino Mcneill','David Parkes'],
+      'date_of_birth':['15/05/2002 ','17/05/2002 ','16/02/1999 ','25/09/1998 ','11/05/2002',' 15/09/1997'],
+      'age':[12,12,13,13,14,12],'height':[173,192,186,167,151,159],'weight':[35,32,33,30,31,32],
+      'address':['street1 ','street2 ','street3 ','street1 ','street2 ','street4']}
+lables=['s1','s2','s3','s4','s5','s6']
+df=pd.DataFrame(data,lables)
+print("the original dataframe:\n",df)
+print("after grupby column 'school' :\n")
+a=df.groupby(['school'])
+for i in a:
+    print("\n",i)
+the original dataframe:
+    school class            name date_of_birth  age  height  weight   address
+s1   s001     V  Alberto Franco   15/05/2002    12     173      35  street1 
+s2   s002     V    Gino Mcneill   17/05/2002    12     192      32  street2 
+s3   s003    VI     Ryan Parkes   16/02/1999    13     186      33  street3 
+s4   s004    VI    Eesha Hinton   25/09/1998    13     167      30  street1 
+s5   s005     V    Gino Mcneill    11/05/2002   14     151      31  street2 
+s6   s006    VI    David Parkes    15/09/1997   12     159      32   street4
+after grupby column 'school' :
+
+
+ ('s001',    school class            name date_of_birth  age  height  weight   address
+s1   s001     V  Alberto Franco   15/05/2002    12     173      35  street1 )
+
+ ('s002',    school class          name date_of_birth  age  height  weight   address
+s2   s002     V  Gino Mcneill   17/05/2002    12     192      32  street2 )
+
+ ('s003',    school class         name date_of_birth  age  height  weight   address
+s3   s003    VI  Ryan Parkes   16/02/1999    13     186      33  street3 )
+
+ ('s004',    school class          name date_of_birth  age  height  weight   address
+s4   s004    VI  Eesha Hinton   25/09/1998    13     167      30  street1 )
+
+ ('s005',    school class          name date_of_birth  age  height  weight   address
+s5   s005     V  Gino Mcneill    11/05/2002   14     151      31  street2 )
+
+ ('s006',    school class          name date_of_birth  age  height  weight  address
+s6   s006    VI  David Parkes    15/09/1997   12     159      32  street4)
+import pandas as pd
+data={'school':['s001','s002','s003','s001','s002','s003'],
+      'class':['V','V','VI','VI','V','VI'],
+      'name':['Alberto Franco','Gino Mcneill','Ryan Parkes','Eesha Hinton','Gino Mcneill','David Parkes'],
+      'date_of_birth':['15/05/2002 ','17/05/2002 ','16/02/1999 ','25/09/1998 ','11/05/2002',' 15/09/1997'],
+      'age':[12,12,13,13,14,12],'height':[173,192,186,167,151,159],'weight':[35,32,33,30,31,32],
+      'address':['street1 ','street2 ','street3 ','street1 ','street2 ','street4']}
+lables=['s1','s2','s3','s4','s5','s6']
+df=pd.DataFrame(data,lables)
+print("the original dataframe:\n",df)
+a=df.groupby(['school'])
+print(a.mean())
+the original dataframe:
+    school class            name date_of_birth  age  height  weight   address
+s1   s001     V  Alberto Franco   15/05/2002    12     173      35  street1 
+s2   s002     V    Gino Mcneill   17/05/2002    12     192      32  street2 
+s3   s003    VI     Ryan Parkes   16/02/1999    13     186      33  street3 
+s4   s001    VI    Eesha Hinton   25/09/1998    13     167      30  street1 
+s5   s002     V    Gino Mcneill    11/05/2002   14     151      31  street2 
+s6   s003    VI    David Parkes    15/09/1997   12     159      32   street4
+         age  height  weight
+school                      
+s001    12.5   170.0    32.5
+s002    13.0   171.5    31.5
+s003    12.5   172.5    32.5
+ 
